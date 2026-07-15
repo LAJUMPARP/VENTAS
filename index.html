@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tienda oficial de artículos VIP de LA JUMPA RP.">
+<title>LA JUMPA RP — Tienda VIP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#ff7a85;
+  --primary-2:#ff9ea6;
+  --primary-soft:rgba(255,122,133,.12);
+  --bg:#030303;
+  --bg-2:#090909;
+  --card:rgba(14,14,14,.94);
+  --text:#fff;
+  --muted:rgba(255,255,255,.64);
+  --line:rgba(255,122,133,.16);
+  --success:#6dffab;
+  --radius:28px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Montserrat',sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 10% 0%,rgba(255,122,133,.14),transparent 27%),
+    radial-gradient(circle at 90% 42%,rgba(255,122,133,.08),transparent 25%),
+    linear-gradient(180deg,#020202,#070707 55%,#020202);
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.17;
+  background-image:radial-gradient(rgba(255,255,255,.15) 1px,transparent 1px);
+  background-size:75px 75px;animation:gridMove 25s linear infinite;
+}
+@keyframes gridMove{to{transform:translateY(-75px)}}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:#070707}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--primary),var(--primary-2));border-radius:50px}
+
+.container{width:min(1380px,calc(100% - 42px));margin:auto}
+.nav{
+  position:fixed;z-index:1000;top:22px;left:50%;transform:translateX(-50%);
+  width:min(1180px,calc(100% - 28px));display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:12px 14px 12px 18px;border:1px solid var(--line);border-radius:24px;
+  background:rgba(7,7,7,.68);backdrop-filter:blur(24px) saturate(160%);
+  box-shadow:0 18px 60px rgba(0,0,0,.55),0 0 35px rgba(255,122,133,.08)
+}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900;white-space:nowrap}
+.brandLogo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),#a91c36);box-shadow:0 0 28px rgba(255,122,133,.22);font-size:18px}
+.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:.8px;margin-top:2px}
+.navLinks{display:flex;align-items:center;gap:4px}
+.navLinks a{padding:13px 16px;border-radius:14px;font-size:12px;font-weight:800;color:rgba(255,255,255,.78);transition:.25s}
+.navLinks a:hover{color:white;background:var(--primary-soft)}
+.navBuy{padding:13px 19px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--primary-2));font-size:12px;font-weight:900;box-shadow:0 0 28px rgba(255,122,133,.22)}
+.menuBtn{display:none;border:1px solid var(--line);background:var(--primary-soft);color:white;width:45px;height:45px;border-radius:14px;cursor:pointer}
+
+.hero{min-height:100vh;display:flex;align-items:center;padding:145px 0 85px;position:relative}
+.heroGrid{display:grid;grid-template-columns:1.04fr .96fr;gap:42px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:10px 15px;border:1px solid var(--line);border-radius:999px;background:var(--primary-soft);font-size:11px;font-weight:900;letter-spacing:1px}
+.liveDot{width:8px;height:8px;border-radius:50%;background:var(--success);box-shadow:0 0 16px var(--success)}
+.hero h1{font-size:clamp(58px,8.7vw,132px);line-height:.86;letter-spacing:-7px;text-transform:uppercase;margin:25px 0}
+.hero h1 span{display:block;background:linear-gradient(135deg,var(--primary),#ffd0d4);-webkit-background-clip:text;color:transparent;filter:drop-shadow(0 0 28px rgba(255,122,133,.23))}
+.heroText{max-width:720px;color:rgba(255,255,255,.69);font-size:17px;line-height:1.85}
+.heroActions{display:flex;gap:13px;flex-wrap:wrap;margin-top:31px}
+.btn{border:none;cursor:pointer;padding:17px 25px;border-radius:18px;font-weight:900;font-size:13px;transition:.3s;display:inline-flex;align-items:center;justify-content:center;gap:10px}
+.btnPrimary{color:#fff;background:linear-gradient(135deg,var(--primary),var(--primary-2));box-shadow:0 0 35px rgba(255,122,133,.23)}
+.btnPrimary:hover{transform:translateY(-4px);box-shadow:0 0 55px rgba(255,122,133,.35)}
+.btnGhost{color:#fff;background:rgba(255,255,255,.035);border:1px solid var(--line)}
+.btnGhost:hover{background:var(--primary-soft)}
+.heroStats{display:flex;gap:28px;flex-wrap:wrap;margin-top:34px}
+.stat strong{font-size:22px}.stat span{display:block;color:var(--muted);font-size:11px;margin-top:5px}
+
+.heroVisual{position:relative;min-height:660px;border-radius:42px;overflow:hidden;border:1px solid var(--line);background:
+ linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.82)),
+ url('assets/hero.jpg') center/cover,
+ linear-gradient(135deg,#311017,#080808 60%);
+ box-shadow:0 35px 100px rgba(0,0,0,.72),0 0 80px rgba(255,122,133,.09)}
+.heroVisual::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 65% 30%,rgba(255,122,133,.18),transparent 28%)}
+.visualPanel{position:absolute;left:26px;right:26px;bottom:26px;padding:23px;border:1px solid rgba(255,255,255,.11);border-radius:25px;background:rgba(5,5,5,.68);backdrop-filter:blur(18px)}
+.visualPanelTop{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}.visualPanel h2{font-size:28px}.visualPanel p{color:var(--muted);font-size:13px;line-height:1.6;margin-top:7px}.vipBadge{padding:9px 12px;border-radius:999px;background:var(--primary-soft);border:1px solid var(--line);font-size:10px;font-weight:900;white-space:nowrap}
+.visualFeatures{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:18px}.miniFeature{padding:13px;border-radius:16px;background:rgba(255,255,255,.035);font-size:10px;font-weight:800;text-align:center}
+
+.section{padding:105px 0}.sectionHead{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:34px}.sectionMini{color:var(--primary);font-size:11px;font-weight:900;letter-spacing:1.2px}.sectionTitle{font-size:clamp(40px,5vw,74px);line-height:.95;letter-spacing:-3px;margin-top:12px}.sectionDesc{max-width:530px;color:var(--muted);line-height:1.75;font-size:14px}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}.filterBtn{border:1px solid rgba(255,255,255,.08);color:white;background:rgba(255,255,255,.025);padding:13px 18px;border-radius:15px;font-size:11px;font-weight:900;cursor:pointer;transition:.25s}.filterBtn:hover,.filterBtn.active{background:var(--primary-soft);border-color:var(--line);box-shadow:0 0 25px rgba(255,122,133,.08)}
+.productsGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.productCard{position:relative;overflow:hidden;border-radius:30px;border:1px solid rgba(255,122,133,.11);background:linear-gradient(180deg,rgba(18,18,18,.97),rgba(7,7,7,.99));box-shadow:0 22px 70px rgba(0,0,0,.42);transition:.35s}
+.productCard:hover{transform:translateY(-9px);border-color:rgba(255,122,133,.28);box-shadow:0 30px 85px rgba(0,0,0,.58),0 0 42px rgba(255,122,133,.09)}
+.productImage{height:245px;position:relative;background:var(--product-bg,linear-gradient(135deg,#351017,#0b0b0b));overflow:hidden}
+.productImage::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 75% 20%,rgba(255,122,133,.24),transparent 28%),linear-gradient(180deg,transparent,rgba(0,0,0,.75))}
+.productIcon{position:absolute;right:28px;top:28px;font-size:76px;filter:drop-shadow(0 18px 18px rgba(0,0,0,.45));transform:rotate(-7deg)}
+.productTag{position:absolute;top:18px;left:18px;padding:8px 11px;border-radius:999px;background:rgba(5,5,5,.68);border:1px solid rgba(255,255,255,.12);font-size:9px;font-weight:900;letter-spacing:.7px;backdrop-filter:blur(10px)}
+.productBody{padding:25px}.productTop{display:flex;justify-content:space-between;gap:18px;align-items:start}.productName{font-size:24px;font-weight:900}.productType{font-size:10px;color:var(--primary);font-weight:900;margin-top:6px}.price{text-align:right;white-space:nowrap}.price strong{font-size:25px}.price span{display:block;color:var(--muted);font-size:9px;margin-top:4px}.productDesc{color:var(--muted);font-size:13px;line-height:1.75;margin:18px 0}.featureList{list-style:none;display:grid;gap:10px;margin-bottom:22px}.featureList li{color:rgba(255,255,255,.77);font-size:12px}.featureList li::before{content:"✓";color:var(--primary);font-weight:900;margin-right:9px}.cardActions{display:grid;grid-template-columns:1fr auto;gap:10px}.cardActions .btn{padding:14px 15px}.detailsBtn{width:49px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);color:white}
+
+.stepsGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.step{padding:31px;border-radius:27px;background:var(--card);border:1px solid var(--line)}.stepNumber{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:var(--primary-soft);color:var(--primary);font-weight:900}.step h3{font-size:20px;margin:22px 0 10px}.step p{color:var(--muted);font-size:13px;line-height:1.7}
+
+.faq{display:grid;gap:12px}.faqItem{border:1px solid rgba(255,122,133,.11);border-radius:22px;background:rgba(14,14,14,.88);overflow:hidden}.faqQ{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 24px;background:none;border:none;color:white;text-align:left;font-weight:800;cursor:pointer}.faqQ span:last-child{color:var(--primary);font-size:22px;transition:.25s}.faqA{max-height:0;overflow:hidden;color:var(--muted);font-size:13px;line-height:1.75;transition:max-height .35s ease}.faqA p{padding:0 24px 23px}.faqItem.open .faqA{max-height:180px}.faqItem.open .faqQ span:last-child{transform:rotate(45deg)}
+
+.cta{padding:43px;border-radius:34px;border:1px solid rgba(255,122,133,.2);background:radial-gradient(circle at 85% 15%,rgba(255,122,133,.22),transparent 26%),linear-gradient(135deg,#1b0c0f,#080808 65%);display:flex;align-items:center;justify-content:space-between;gap:28px}.cta h2{font-size:clamp(34px,4vw,62px);line-height:1}.cta p{color:var(--muted);margin-top:13px;line-height:1.65}.ctaButtons{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+footer{padding:35px 0 50px;color:var(--muted);font-size:11px}.footerRow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.07);padding-top:28px}
+
+.modal{position:fixed;z-index:3000;inset:0;display:grid;place-items:center;padding:22px;background:rgba(0,0,0,.74);backdrop-filter:blur(17px);opacity:0;visibility:hidden;transition:.28s}.modal.open{opacity:1;visibility:visible}.modalBox{position:relative;width:min(850px,100%);max-height:88vh;overflow:auto;padding:31px;border-radius:30px;background:radial-gradient(circle at top right,rgba(255,122,133,.12),transparent 30%),#0b0b0b;border:1px solid rgba(255,122,133,.22);box-shadow:0 45px 140px rgba(0,0,0,.86);transform:translateY(25px) scale(.96);transition:.28s}.modal.open .modalBox{transform:none}.modalClose{position:absolute;right:18px;top:18px;width:44px;height:44px;border-radius:14px;border:1px solid var(--line);background:var(--primary-soft);color:white;font-size:22px;cursor:pointer}.modalIcon{font-size:70px;margin-bottom:20px}.modalBox h2{font-size:clamp(35px,5vw,61px);line-height:1}.modalMeta{color:var(--primary);font-size:11px;font-weight:900;margin-top:9px}.modalText{color:var(--muted);line-height:1.8;margin:22px 0}.modalFeatures{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:25px}.modalFeature{padding:15px;border-radius:16px;background:rgba(255,255,255,.035);font-size:12px}.modalPrice{font-size:30px;font-weight:900;margin-right:auto}
+
+.reveal{opacity:0;transform:translateY(35px);transition:.75s cubic-bezier(.22,1,.36,1)}.reveal.show{opacity:1;transform:none}
+@media(max-width:1050px){.heroGrid{grid-template-columns:1fr}.heroVisual{min-height:570px}.productsGrid{grid-template-columns:repeat(2,1fr)}.navLinks{display:none}.menuBtn{display:block}.nav.open .navLinks{display:flex;position:absolute;top:75px;left:0;right:0;flex-direction:column;align-items:stretch;padding:13px;background:#0a0a0a;border:1px solid var(--line);border-radius:20px}.nav.open .navLinks a{text-align:center}.navBuy{margin-left:auto}.sectionHead{align-items:start;flex-direction:column}.cta{align-items:flex-start;flex-direction:column}.ctaButtons{justify-content:flex-start}}
+@media(max-width:700px){.container{width:min(100% - 26px,1380px)}.navBuy{display:none}.brand span{font-size:12px}.hero{padding-top:125px}.hero h1{font-size:56px;letter-spacing:-4px}.heroVisual{min-height:470px}.visualFeatures{grid-template-columns:1fr}.productsGrid,.stepsGrid{grid-template-columns:1fr}.productImage{height:210px}.section{padding:78px 0}.sectionTitle{font-size:43px;letter-spacing:-2px}.modalFeatures{grid-template-columns:1fr}.cta{padding:28px}.heroStats{gap:18px}.visualPanelTop{flex-direction:column}.heroActions .btn{width:100%}}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <a class="brand" href="#inicio">
+    <div class="brandLogo">LJ</div>
+    <span>LA JUMPA RP<small>TIENDA OFICIAL VIP</small></span>
+  </a>
+  <div class="navLinks" id="navLinks">
+    <a href="#inicio">Inicio</a><a href="#tienda">Tienda</a><a href="#comprar">Cómo comprar</a><a href="#faq">Preguntas</a>
+  </div>
+  <a class="navBuy" href="https://discord.gg/A9w3mJWaCH" target="_blank" rel="noopener">ENTRAR AL DISCORD</a>
+  <button class="menuBtn" id="menuBtn" aria-label="Abrir menú">☰</button>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="container heroGrid">
+    <div>
+      <div class="eyebrow"><span class="liveDot"></span> TIENDA VIP DISPONIBLE</div>
+      <h1>SUBE DE <span>NIVEL</span></h1>
+      <p class="heroText">Consigue vehículos exclusivos, membresías VIP, propiedades, paquetes de dinero y artículos especiales para vivir una experiencia única dentro de LA JUMPA RP.</p>
+      <div class="heroActions">
+        <a href="#tienda" class="btn btnPrimary">VER ARTÍCULOS VIP <span>→</span></a>
+        <a href="https://discord.gg/A9w3mJWaCH" target="_blank" rel="noopener" class="btn btnGhost">SOPORTE EN DISCORD</a>
+      </div>
+      <div class="heroStats">
+        <div class="stat"><strong>24/7</strong><span>SOPORTE ACTIVO</span></div>
+        <div class="stat"><strong>100%</strong><span>ENTREGA SEGURA</span></div>
+        <div class="stat"><strong>VIP</strong><span>CONTENIDO EXCLUSIVO</span></div>
+      </div>
+    </div>
+    <div class="heroVisual">
+      <div class="visualPanel">
+        <div class="visualPanelTop">
+          <div><h2>LA JUMPA PREMIUM</h2><p>Beneficios exclusivos, prioridad y estilo dentro de la ciudad.</p></div>
+          <div class="vipBadge">★ EXPERIENCIA VIP</div>
+        </div>
+        <div class="visualFeatures"><div class="miniFeature">VEHÍCULOS EXCLUSIVOS</div><div class="miniFeature">PRIORIDAD EN COLA</div><div class="miniFeature">BENEFICIOS ESPECIALES</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="section" id="tienda">
+  <div class="container">
+    <div class="sectionHead reveal">
+      <div><div class="sectionMini">CATÁLOGO OFICIAL</div><h2 class="sectionTitle">ARTÍCULOS VIP</h2></div>
+      <p class="sectionDesc">Selecciona una categoría y revisa todos los beneficios. Cambia nombres, precios y enlaces directamente dentro del archivo.</p>
+    </div>
+    <div class="filters reveal">
+      <button class="filterBtn active" data-filter="all">TODOS</button>
+      <button class="filterBtn" data-filter="membresias">MEMBRESÍAS</button>
+      <button class="filterBtn" data-filter="vehiculos">VEHÍCULOS</button>
+      <button class="filterBtn" data-filter="propiedades">PROPIEDADES</button>
+      <button class="filterBtn" data-filter="paquetes">PAQUETES</button>
+    </div>
+    <div class="productsGrid" id="productsGrid"></div>
+  </div>
+</section>
+
+<section class="section" id="comprar">
+  <div class="container">
+    <div class="sectionHead reveal"><div><div class="sectionMini">PROCESO SIMPLE</div><h2 class="sectionTitle">CÓMO COMPRAR</h2></div><p class="sectionDesc">La página funciona perfectamente en GitHub Pages. Los pagos pueden gestionarse mediante Tebex, PayPal o tickets de Discord.</p></div>
+    <div class="stepsGrid">
+      <article class="step reveal"><div class="stepNumber">01</div><h3>Elige tu artículo</h3><p>Explora las categorías, abre los detalles y selecciona el producto que deseas adquirir.</p></article>
+      <article class="step reveal"><div class="stepNumber">02</div><h3>Realiza el pago</h3><p>El botón de compra puede llevar a tu tienda Tebex, PayPal o al canal de tickets de Discord.</p></article>
+      <article class="step reveal"><div class="stepNumber">03</div><h3>Recibe tu compra</h3><p>Abre un ticket con tu comprobante y el equipo entregará el artículo dentro del servidor.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="container">
+    <div class="sectionHead reveal"><div><div class="sectionMini">AYUDA Y SOPORTE</div><h2 class="sectionTitle">PREGUNTAS FRECUENTES</h2></div><p class="sectionDesc">Información importante antes de realizar una compra.</p></div>
+    <div class="faq">
+      <div class="faqItem reveal"><button class="faqQ"><span>¿Cuánto tarda en llegar mi compra?</span><span>+</span></button><div class="faqA"><p>Después de verificar el pago, el equipo administrativo realizará la entrega mediante un ticket. El tiempo puede variar según la disponibilidad del staff.</p></div></div>
+      <div class="faqItem reveal"><button class="faqQ"><span>¿Las compras son reembolsables?</span><span>+</span></button><div class="faqA"><p>Define aquí tu política oficial. Normalmente los productos digitales ya entregados no son reembolsables, salvo errores atribuibles al servidor.</p></div></div>
+      <div class="faqItem reveal"><button class="faqQ"><span>¿Dónde solicito soporte?</span><span>+</span></button><div class="faqA"><p>Entra al Discord oficial de LA JUMPA RP y abre un ticket en la categoría correspondiente a compras o donaciones.</p></div></div>
+      <div class="faqItem reveal"><button class="faqQ"><span>¿Puedo regalar un artículo a otro jugador?</span><span>+</span></button><div class="faqA"><p>Sí, siempre que indiques correctamente el ID o citizenid del jugador beneficiado al abrir el ticket.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cta reveal">
+      <div><div class="sectionMini">¿NECESITAS AYUDA?</div><h2>HABLA CON NUESTRO STAFF</h2><p>Abre un ticket y recibe asistencia antes o después de tu compra.</p></div>
+      <div class="ctaButtons"><a class="btn btnPrimary" href="https://discord.gg/A9w3mJWaCH" target="_blank" rel="noopener">ABRIR DISCORD</a><a class="btn btnGhost" href="#tienda">VOLVER A LA TIENDA</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="container footerRow"><span>© 2026 LA JUMPA RP — Todos los derechos reservados.</span><span>FiveM es una marca independiente. Esta página no está afiliada a Rockstar Games.</span></div></footer>
+
+<div class="modal" id="productModal" aria-hidden="true">
+  <div class="modalBox">
+    <button class="modalClose" id="modalClose" aria-label="Cerrar">×</button>
+    <div class="modalIcon" id="modalIcon">★</div>
+    <h2 id="modalName">Artículo VIP</h2>
+    <div class="modalMeta" id="modalType">MEMBRESÍA</div>
+    <p class="modalText" id="modalDescription"></p>
+    <div class="modalFeatures" id="modalFeatures"></div>
+    <div class="heroActions"><div class="modalPrice" id="modalPrice">$0</div><a class="btn btnPrimary" id="modalBuy" href="#" target="_blank" rel="noopener">COMPRAR AHORA</a></div>
+  </div>
+</div>
+
+<script>
+// =========================================================
+// EDITA AQUÍ TUS PRODUCTOS, PRECIOS Y ENLACES
+// =========================================================
+const products = [
+  {id:1,category:'membresias',tag:'MÁS POPULAR',icon:'👑',name:'VIP DIAMANTE',type:'MEMBRESÍA MENSUAL',price:'$29.99',period:'/ MES',description:'La experiencia premium definitiva con prioridad alta y beneficios exclusivos.',features:['Prioridad máxima en cola','Tag exclusivo en Discord','Vehículo VIP mensual','Bonificación de salario'],buyUrl:'https://discord.gg/A9w3mJWaCH',bg:'linear-gradient(135deg,#42131d,#090909 68%)'},
+  {id:2,category:'membresias',tag:'RECOMENDADO',icon:'💎',name:'VIP PLATINO',type:'MEMBRESÍA MENSUAL',price:'$19.99',period:'/ MES',description:'Ventajas premium para jugadores activos que buscan comodidad y distinción.',features:['Prioridad alta en cola','Tag VIP en Discord','Acceso a sorteos VIP','Bonificación de salario'],buyUrl:'https://discord.gg/A9w3mJWaCH',bg:'linear-gradient(135deg,#271742,#090909 68%)'},
+  {id:3,category:'membresias',tag:'INICIAL',icon:'⭐',name:'VIP ORO',type:'MEMBRESÍA MENSUAL',price:'$9.99',period:'/ MES',description:'La mejor forma de comenzar a disfrutar beneficios exclusivos dentro de la ciudad.',features:['Prioridad básica en cola','Tag VIP en Discord','Acceso a canal VIP','Beneficios semanales'],buyUrl:'https://discord.gg/A9w3mJWaCH',bg:'linear-gradient(135deg,#493a12,#090909 68%)'},
+  {id:4,category:'vehiculos',tag:'EDICIÓN LIMITADA',icon:'🏎️',name:'SUPERCAR VIP',type:'VEHÍCULO EXCLUSIVO',price:'$39.99',period:'PAGO ÚNICO',description:'Vehículo exclusivo con diseño deportivo y matrícula personalizada.',features:['Vehículo permanente','Matrícula personalizada','Entrega en garaje','Color inicial a elección'],buyUrl:'https://discord.gg/A9w3mJWaCH',bg:'linear-gradient(135deg,#391019,#090909 68%)'},
+  {id:5,category:'vehiculos',tag:'NUEVO',icon:'🏍️',name:'MOTO VIP',type:'VEHÍCULO EXCLUSIVO',price:'$24.99',period:'PAGO ÚNICO',description:'Motocicleta premium para recorrer Los Santos con una presencia única.',features:['Moto permanente','Entrega inmediata','Matrícula personalizada','Color inicial a elección'],buyUrl:'https://discord.gg/A9w3mJWaCH',bg:'linear-gradient(135deg,#102839,#090909 68%)'},
+  {id:6,category:'propiedades',tag:'EXCLUSIVO',icon:'🏡',name:'MANSIÓN VIP',type:'PROPIEDAD PREMIUM',price:'$79.99',period:'PAGO ÚNICO',description:'Propiedad exclusiva con garaje, almacenamiento y ubicación premium.',features:['Propiedad permanente','Garaje privado','Stash exclusivo','Ubicación premium'],buyUrl:'https://discord.gg/A9w3mJWaCH',bg:'linear-gradient(135deg,#173525,#090909 68%)'},
+  {id:7,category:'paquetes',tag:'MEJOR VALOR',icon:'💵',name:'PACK EMPRENDEDOR',type:'PAQUETE INICIAL',price:'$14.99',period:'PAGO ÚNICO',description:'Impulsa la historia de tu personaje con recursos para comenzar un nuevo proyecto.',features:['Dinero inicial','Vehículo básico','Teléfono premium','Entrega por ticket'],buyUrl:'https://discord.gg/A9w3mJWaCH',bg:'linear-gradient(135deg,#173626,#090909 68%)'},
+  {id:8,category:'paquetes',tag:'PERSONALIZADO',icon:'🪪',name:'CAMBIO DE NOMBRE',type:'SERVICIO VIP',price:'$7.99',period:'PAGO ÚNICO',description:'Solicita un cambio autorizado del nombre de tu personaje sin perder su progreso.',features:['Cambio de identidad','Conserva inventario','Conserva propiedades','Gestión por administración'],buyUrl:'https://discord.gg/A9w3mJWaCH',bg:'linear-gradient(135deg,#31203b,#090909 68%)'},
+  {id:9,category:'paquetes',tag:'NEGOCIO VIP',icon:'🏪',name:'NEGOCIO PERSONALIZADO',type:'PROYECTO EXCLUSIVO',price:'CONSULTAR',period:'POR TICKET',description:'Solicita la creación o adquisición de un negocio exclusivo dentro de la ciudad.',features:['Asesoría con el staff','Ubicación evaluada','Configuración personalizada','Entrega coordinada'],buyUrl:'https://discord.gg/A9w3mJWaCH',bg:'linear-gradient(135deg,#3d2411,#090909 68%)'}
+];
+
+const grid=document.getElementById('productsGrid');
+function renderProducts(filter='all'){
+  const shown=filter==='all'?products:products.filter(p=>p.category===filter);
+  grid.innerHTML=shown.map(p=>`<article class="productCard reveal show" data-category="${p.category}">
+    <div class="productImage" style="--product-bg:${p.bg}"><span class="productTag">${p.tag}</span><span class="productIcon">${p.icon}</span></div>
+    <div class="productBody"><div class="productTop"><div><div class="productName">${p.name}</div><div class="productType">${p.type}</div></div><div class="price"><strong>${p.price}</strong><span>${p.period}</span></div></div>
+    <p class="productDesc">${p.description}</p><ul class="featureList">${p.features.slice(0,3).map(f=>`<li>${f}</li>`).join('')}</ul>
+    <div class="cardActions"><a class="btn btnPrimary" href="${p.buyUrl}" target="_blank" rel="noopener">COMPRAR</a><button class="btn detailsBtn" onclick="openProduct(${p.id})" aria-label="Ver detalles">＋</button></div></div></article>`).join('');
+}
+renderProducts();
+
+document.querySelectorAll('.filterBtn').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.filterBtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderProducts(btn.dataset.filter)}));
+
+const modal=document.getElementById('productModal');
+function openProduct(id){const p=products.find(x=>x.id===id);if(!p)return;document.getElementById('modalIcon').textContent=p.icon;document.getElementById('modalName').textContent=p.name;document.getElementById('modalType').textContent=p.type;document.getElementById('modalDescription').textContent=p.description;document.getElementById('modalFeatures').innerHTML=p.features.map(f=>`<div class="modalFeature">✓ ${f}</div>`).join('');document.getElementById('modalPrice').textContent=p.price;document.getElementById('modalBuy').href=p.buyUrl;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}
+function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''}
+document.getElementById('modalClose').onclick=closeModal;modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+document.querySelectorAll('.faqQ').forEach(q=>q.addEventListener('click',()=>q.parentElement.classList.toggle('open')));
+const nav=document.getElementById('nav');document.getElementById('menuBtn').onclick=()=>nav.classList.toggle('open');document.querySelectorAll('.navLinks a').forEach(a=>a.onclick=()=>nav.classList.remove('open'));
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.1});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
