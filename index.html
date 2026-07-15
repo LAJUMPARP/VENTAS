@@ -111,209 +111,141 @@ footer{padding:35px 0 50px;color:var(--muted);font-size:11px}.footerRow{display:
 @media(max-width:700px){.container{width:min(100% - 26px,1380px)}.navBuy{display:none}.brand span{font-size:12px}.hero{padding-top:125px}.hero h1{font-size:56px;letter-spacing:-4px}.heroVisual{min-height:470px}.visualFeatures{grid-template-columns:1fr}.productsGrid,.stepsGrid{grid-template-columns:1fr}.productImage{height:210px}.section{padding:78px 0}.sectionTitle{font-size:43px;letter-spacing:-2px}.modalFeatures{grid-template-columns:1fr}.cta{padding:28px}.heroStats{gap:18px}.visualPanelTop{flex-direction:column}.heroActions .btn{width:100%}}
 
 /* =========================================================
-   LA JUMPA RP — EFECTO DE CARGA CINEMÁTICO
+   LA JUMPA RP — CARGA CINEMÁTICA FUNCIONAL
 ========================================================= */
 
-/* Todo comienza oculto */
-.nav,
-.eyebrow,
-.hero h1,
-.heroText,
-.heroActions,
-.heroStats,
-.heroVisual{
+/* Estado inicial antes de activar pageLoaded */
+body:not(.pageLoaded) .nav,
+body:not(.pageLoaded) .eyebrow,
+body:not(.pageLoaded) .hero h1,
+body:not(.pageLoaded) .heroText,
+body:not(.pageLoaded) .heroActions,
+body:not(.pageLoaded) .heroStats .stat,
+body:not(.pageLoaded) .heroVisual,
+body:not(.pageLoaded) .visualPanel{
     opacity:0;
 }
 
-/* Barra superior */
-.nav{
-    animation:
-        vipNavReveal 1s cubic-bezier(.22,1,.36,1) forwards;
-
-    animation-delay:.1s;
+/* Navbar */
+body.pageLoaded .nav{
+    animation:vipNavReveal 1s cubic-bezier(.22,1,.36,1) .10s both;
 }
 
-/* Tienda VIP disponible */
-.eyebrow{
-    animation:
-        vipRevealUp 1s cubic-bezier(.22,1,.36,1) forwards;
-
-    animation-delay:.35s;
+/* Indicador */
+body.pageLoaded .eyebrow{
+    animation:vipRevealUp .85s cubic-bezier(.22,1,.36,1) .35s both;
 }
 
-/* Título SUBE DE NIVEL */
-.hero h1{
-    animation:
-        vipTitleReveal 1.4s cubic-bezier(.22,1,.36,1) forwards;
-
-    animation-delay:.65s;
+/* Título */
+body.pageLoaded .hero h1{
+    animation:vipTitleReveal 1.25s cubic-bezier(.22,1,.36,1) .58s both;
 }
 
-/* Descripción */
-.heroText{
-    animation:
-        vipRevealUp 1s cubic-bezier(.22,1,.36,1) forwards;
-
-    animation-delay:1s;
+/* Texto */
+body.pageLoaded .heroText{
+    animation:vipRevealUp .9s cubic-bezier(.22,1,.36,1) .90s both;
 }
 
 /* Botones */
-.heroActions{
-    animation:
-        vipRevealUp 1s cubic-bezier(.22,1,.36,1) forwards;
-
-    animation-delay:1.2s;
+body.pageLoaded .heroActions{
+    animation:vipRevealUp .9s cubic-bezier(.22,1,.36,1) 1.10s both;
 }
 
-/* Estadísticas */
-.heroStats{
-    animation:
-        vipRevealUp 1s cubic-bezier(.22,1,.36,1) forwards;
+/* Estadísticas una por una */
+body.pageLoaded .heroStats .stat:nth-child(1){
+    animation:vipRevealUp .75s cubic-bezier(.22,1,.36,1) 1.28s both;
+}
 
-    animation-delay:1.4s;
+body.pageLoaded .heroStats .stat:nth-child(2){
+    animation:vipRevealUp .75s cubic-bezier(.22,1,.36,1) 1.43s both;
+}
+
+body.pageLoaded .heroStats .stat:nth-child(3){
+    animation:vipRevealUp .75s cubic-bezier(.22,1,.36,1) 1.58s both;
 }
 
 /* Cinemática */
-.heroVisual{
-    animation:
-        vipCinematicReveal 1.8s cubic-bezier(.22,1,.36,1) forwards;
-
-    animation-delay:.8s;
+body.pageLoaded .heroVisual{
+    animation:vipCinematicReveal 1.55s cubic-bezier(.22,1,.36,1) .70s both;
 }
 
-/* =========================================================
-   NAVBAR
-========================================================= */
+/* Panel del video */
+body.pageLoaded .visualPanel{
+    animation:vipPanelReveal .85s cubic-bezier(.22,1,.36,1) 1.55s both;
+}
 
 @keyframes vipNavReveal{
-
-    0%{
+    from{
         opacity:0;
-
-        transform:
-            translateX(-50%)
-            translateY(-40px)
-            scale(.9);
-
-        filter:blur(12px);
+        transform:translateX(-50%) translateY(-45px) scale(.92);
+        filter:blur(14px);
     }
-
-    100%{
+    to{
         opacity:1;
-
-        transform:
-            translateX(-50%)
-            translateY(0)
-            scale(1);
-
+        transform:translateX(-50%) translateY(0) scale(1);
         filter:blur(0);
     }
 }
 
-/* =========================================================
-   APARICIÓN DESDE ABAJO
-========================================================= */
-
 @keyframes vipRevealUp{
-
-    0%{
+    from{
         opacity:0;
-
-        transform:
-            translateY(60px);
-
-        filter:
-            blur(18px);
+        transform:translateY(55px) scale(.97);
+        filter:blur(14px);
     }
-
-    100%{
+    to{
         opacity:1;
-
-        transform:
-            translateY(0);
-
-        filter:
-            blur(0);
+        transform:translateY(0) scale(1);
+        filter:blur(0);
     }
 }
-
-/* =========================================================
-   TÍTULO
-========================================================= */
 
 @keyframes vipTitleReveal{
-
-    0%{
+    from{
         opacity:0;
-
-        transform:
-            translateY(80px)
-            scale(.94);
-
-        letter-spacing:-14px;
-
-        filter:
-            blur(20px);
+        transform:translateY(80px) scale(.92);
+        letter-spacing:-15px;
+        filter:blur(20px);
     }
-
-    100%{
+    to{
         opacity:1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
+        transform:translateY(0) scale(1);
         letter-spacing:-7px;
-
-        filter:
-            blur(0);
+        filter:blur(0);
     }
 }
-
-/* =========================================================
-   CINEMÁTICA
-========================================================= */
 
 @keyframes vipCinematicReveal{
-
-    0%{
+    from{
         opacity:0;
-
-        transform:
-            translateX(120px)
-            scale(.85)
-            rotate(2deg);
-
-        filter:
-            blur(25px);
+        transform:translateX(130px) scale(.84) rotate(2deg);
+        filter:blur(24px);
     }
-
-    100%{
+    to{
         opacity:1;
-
-        transform:
-            translateX(0)
-            scale(1)
-            rotate(0);
-
-        filter:
-            blur(0);
+        transform:translateX(0) scale(1) rotate(0);
+        filter:blur(0);
     }
 }
 
-/* =========================================================
-   APARICIÓN DE SECCIONES AL BAJAR
-========================================================= */
+@keyframes vipPanelReveal{
+    from{
+        opacity:0;
+        transform:translateY(35px) scale(.96);
+        filter:blur(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+        filter:blur(0);
+    }
+}
 
+/* Aparición al bajar */
 .reveal{
     opacity:0;
-
-    transform:
-        translateY(45px)
-        scale(.98);
-
+    transform:translateY(45px) scale(.98);
     filter:blur(8px);
-
     transition:
         opacity .8s cubic-bezier(.22,1,.36,1),
         transform .8s cubic-bezier(.22,1,.36,1),
@@ -322,31 +254,8 @@ footer{padding:35px 0 50px;color:var(--muted);font-size:11px}.footerRow{display:
 
 .reveal.show{
     opacity:1;
-
-    transform:
-        translateY(0)
-        scale(1);
-
+    transform:translateY(0) scale(1);
     filter:blur(0);
-}
-
-/* Reduce las animaciones cuando el dispositivo lo solicita */
-@media(prefers-reduced-motion:reduce){
-
-    .nav,
-    .eyebrow,
-    .hero h1,
-    .heroText,
-    .heroActions,
-    .heroStats,
-    .heroVisual,
-    .reveal{
-        opacity:1;
-        animation:none;
-        transform:none;
-        filter:none;
-        transition:none;
-    }
 }
 </style>
 </head>
@@ -461,8 +370,14 @@ footer{padding:35px 0 50px;color:var(--muted);font-size:11px}.footerRow{display:
 </div>
 
 <script>
-window.addEventListener('DOMContentLoaded',()=>{
-  requestAnimationFrame(()=>document.body.classList.add('pageLoaded'));
+window.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.remove('pageLoaded');
+
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      document.body.classList.add('pageLoaded');
+    }, 120);
+  });
 });
 
 // =========================================================
