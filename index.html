@@ -78,13 +78,11 @@ button,input{font:inherit}
 .heroStats{display:flex;gap:28px;flex-wrap:wrap;margin-top:34px}
 .stat strong{font-size:22px}.stat span{display:block;color:var(--muted);font-size:11px;margin-top:5px}
 
-.heroVisual{position:relative;min-height:660px;border-radius:42px;overflow:hidden;border:1px solid var(--line);background:
- linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.82)),
- url('assets/hero.jpg') center/cover,
- linear-gradient(135deg,#311017,#080808 60%);
+.heroVisual{position:relative;min-height:660px;border-radius:42px;overflow:hidden;border:1px solid var(--line);background:#050505;
  box-shadow:0 35px 100px rgba(0,0,0,.72),0 0 80px rgba(255,122,133,.09)}
-.heroVisual::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 65% 30%,rgba(255,122,133,.18),transparent 28%)}
-.visualPanel{position:absolute;left:26px;right:26px;bottom:26px;padding:23px;border:1px solid rgba(255,255,255,.11);border-radius:25px;background:rgba(5,5,5,.68);backdrop-filter:blur(18px)}
+.heroVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;filter:saturate(.92) contrast(1.05)}
+.heroVisual::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.82)),radial-gradient(circle at 65% 30%,rgba(255,122,133,.18),transparent 28%);pointer-events:none}
+.visualPanel{position:absolute;z-index:3;left:26px;right:26px;bottom:26px;padding:23px;border:1px solid rgba(255,255,255,.11);border-radius:25px;background:rgba(5,5,5,.68);backdrop-filter:blur(18px)}
 .visualPanelTop{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}.visualPanel h2{font-size:28px}.visualPanel p{color:var(--muted);font-size:13px;line-height:1.6;margin-top:7px}.vipBadge{padding:9px 12px;border-radius:999px;background:var(--primary-soft);border:1px solid var(--line);font-size:10px;font-weight:900;white-space:nowrap}
 .visualFeatures{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:18px}.miniFeature{padding:13px;border-radius:16px;background:rgba(255,255,255,.035);font-size:10px;font-weight:800;text-align:center}
 
@@ -111,6 +109,53 @@ footer{padding:35px 0 50px;color:var(--muted);font-size:11px}.footerRow{display:
 .reveal{opacity:0;transform:translateY(35px);transition:.75s cubic-bezier(.22,1,.36,1)}.reveal.show{opacity:1;transform:none}
 @media(max-width:1050px){.heroGrid{grid-template-columns:1fr}.heroVisual{min-height:570px}.productsGrid{grid-template-columns:repeat(2,1fr)}.navLinks{display:none}.menuBtn{display:block}.nav.open .navLinks{display:flex;position:absolute;top:75px;left:0;right:0;flex-direction:column;align-items:stretch;padding:13px;background:#0a0a0a;border:1px solid var(--line);border-radius:20px}.nav.open .navLinks a{text-align:center}.navBuy{margin-left:auto}.sectionHead{align-items:start;flex-direction:column}.cta{align-items:flex-start;flex-direction:column}.ctaButtons{justify-content:flex-start}}
 @media(max-width:700px){.container{width:min(100% - 26px,1380px)}.navBuy{display:none}.brand span{font-size:12px}.hero{padding-top:125px}.hero h1{font-size:56px;letter-spacing:-4px}.heroVisual{min-height:470px}.visualFeatures{grid-template-columns:1fr}.productsGrid,.stepsGrid{grid-template-columns:1fr}.productImage{height:210px}.section{padding:78px 0}.sectionTitle{font-size:43px;letter-spacing:-2px}.modalFeatures{grid-template-columns:1fr}.cta{padding:28px}.heroStats{gap:18px}.visualPanelTop{flex-direction:column}.heroActions .btn{width:100%}}
+
+
+/* =========================================================
+   APARICIÓN CINEMÁTICA AL ABRIR / RECARGAR
+========================================================= */
+.nav,
+.hero .eyebrow,
+.hero h1,
+.hero .heroText,
+.hero .heroActions,
+.hero .heroStats,
+.hero .heroVisual{
+  opacity:0;
+  will-change:transform,opacity,filter;
+}
+
+body.pageLoaded .nav{animation:loadNav .85s cubic-bezier(.22,1,.36,1) .08s forwards}
+body.pageLoaded .hero .eyebrow{animation:loadUp .75s cubic-bezier(.22,1,.36,1) .28s forwards}
+body.pageLoaded .hero h1{animation:loadTitle 1s cubic-bezier(.22,1,.36,1) .48s forwards}
+body.pageLoaded .hero .heroText{animation:loadUp .8s cubic-bezier(.22,1,.36,1) .72s forwards}
+body.pageLoaded .hero .heroActions{animation:loadUp .8s cubic-bezier(.22,1,.36,1) .92s forwards}
+body.pageLoaded .hero .heroStats{animation:loadUp .8s cubic-bezier(.22,1,.36,1) 1.10s forwards}
+body.pageLoaded .hero .heroVisual{animation:loadVisual 1.25s cubic-bezier(.22,1,.36,1) .55s forwards}
+
+@keyframes loadNav{
+  from{opacity:0;transform:translateX(-50%) translateY(-38px) scale(.96);filter:blur(12px)}
+  to{opacity:1;transform:translateX(-50%) translateY(0) scale(1);filter:blur(0)}
+}
+@keyframes loadUp{
+  from{opacity:0;transform:translateY(42px);filter:blur(12px)}
+  to{opacity:1;transform:translateY(0);filter:blur(0)}
+}
+@keyframes loadTitle{
+  from{opacity:0;transform:translateY(58px) scale(.96);filter:blur(16px)}
+  to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+}
+@keyframes loadVisual{
+  from{opacity:0;transform:translateX(85px) scale(.94);filter:blur(18px)}
+  to{opacity:1;transform:translateX(0) scale(1);filter:blur(0)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .nav,.hero .eyebrow,.hero h1,.hero .heroText,.hero .heroActions,.hero .heroStats,.hero .heroVisual{
+    opacity:1!important;animation:none!important;transform:none!important;filter:none!important
+  }
+}
+
 </style>
 </head>
 <body>
@@ -143,6 +188,10 @@ footer{padding:35px 0 50px;color:var(--muted);font-size:11px}.footerRow{display:
       </div>
     </div>
     <div class="heroVisual">
+      <video class="heroVideo" autoplay muted loop playsinline preload="metadata">
+        <source src="assets/bg.mp4" type="video/mp4">
+        Tu navegador no puede reproducir este video.
+      </video>
       <div class="visualPanel">
         <div class="visualPanelTop">
           <div><h2>LA JUMPA PREMIUM</h2><p>Beneficios exclusivos, prioridad y estilo dentro de la ciudad.</p></div>
@@ -220,6 +269,10 @@ footer{padding:35px 0 50px;color:var(--muted);font-size:11px}.footerRow{display:
 </div>
 
 <script>
+window.addEventListener('DOMContentLoaded',()=>{
+  requestAnimationFrame(()=>document.body.classList.add('pageLoaded'));
+});
+
 // =========================================================
 // EDITA AQUÍ TUS PRODUCTOS, PRECIOS Y ENLACES
 // =========================================================
