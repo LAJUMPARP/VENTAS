@@ -167,7 +167,7 @@ body.pageLoaded .hero .heroVisual{animation:loadVisual 1.25s cubic-bezier(.22,1,
   <div class="navLinks" id="navLinks">
     <a href="#inicio">Inicio</a><a href="#tienda">Tienda</a><a href="#comprar">Cómo comprar</a><a href="#faq">Preguntas</a>
   </div>
-  <a class="navBuy" href="https://discord.gg/A9w3mJWaCH" target="_blank" rel="noopener">ENTRAR AL DISCORD</a>
+  <a class="navBuy" href="https://discord.gg/RWz6vTtdrb" target="_blank" rel="noopener">ENTRAR AL DISCORD</a>
   <button class="menuBtn" id="menuBtn" aria-label="Abrir menú">☰</button>
 </nav>
 
@@ -179,7 +179,7 @@ body.pageLoaded .hero .heroVisual{animation:loadVisual 1.25s cubic-bezier(.22,1,
       <p class="heroText">Consigue vehículos exclusivos, membresías VIP, propiedades, paquetes de dinero y artículos especiales para vivir una experiencia única dentro de LA JUMPA RP.</p>
       <div class="heroActions">
         <a href="#tienda" class="btn btnPrimary">VER ARTÍCULOS VIP <span>→</span></a>
-        <a href="https://discord.gg/A9w3mJWaCH" target="_blank" rel="noopener" class="btn btnGhost">SOPORTE EN DISCORD</a>
+        <a href="https://discord.gg/RWz6vTtdrb" target="_blank" rel="noopener" class="btn btnGhost">SOPORTE EN DISCORD</a>
       </div>
       <div class="heroStats">
         <div class="stat"><strong>24/7</strong><span>SOPORTE ACTIVO</span></div>
@@ -248,7 +248,7 @@ body.pageLoaded .hero .heroVisual{animation:loadVisual 1.25s cubic-bezier(.22,1,
   <div class="container">
     <div class="cta reveal">
       <div><div class="sectionMini">¿NECESITAS AYUDA?</div><h2>HABLA CON NUESTRO STAFF</h2><p>Abre un ticket y recibe asistencia antes o después de tu compra.</p></div>
-      <div class="ctaButtons"><a class="btn btnPrimary" href="https://discord.gg/A9w3mJWaCH" target="_blank" rel="noopener">ABRIR DISCORD</a><a class="btn btnGhost" href="#tienda">VOLVER A LA TIENDA</a></div>
+      <div class="ctaButtons"><a class="btn btnPrimary" href="https://discord.gg/RWz6vTtdrb" target="_blank" rel="noopener">ABRIR DISCORD</a><a class="btn btnGhost" href="#tienda">VOLVER A LA TIENDA</a></div>
     </div>
   </div>
 </section>
@@ -277,15 +277,15 @@ window.addEventListener('DOMContentLoaded',()=>{
 // EDITA AQUÍ TUS PRODUCTOS, PRECIOS Y ENLACES
 // =========================================================
 const products = [
-  {id:1,category:'membresias',tag:'MÁS POPULAR',icon:'👑',name:'VIP DIAMANTE',type:'MEMBRESÍA MENSUAL',price:'$29.99',period:'/ MES',description:'La experiencia premium definitiva con prioridad alta y beneficios exclusivos.',features:['Prioridad máxima en cola','Tag exclusivo en Discord','Vehículo VIP mensual','Bonificación de salario'],buyUrl:'https://discord.gg/A9w3mJWaCH',bg:'linear-gradient(135deg,#42131d,#090909 68%)'},
-  {id:2,category:'membresias',tag:'RECOMENDADO',icon:'💎',name:'VIP PLATINO',type:'MEMBRESÍA MENSUAL',price:'$19.99',period:'/ MES',description:'Ventajas premium para jugadores activos que buscan comodidad y distinción.',features:['Prioridad alta en cola','Tag VIP en Discord','Acceso a sorteos VIP','Bonificación de salario'],buyUrl:'https://discord.gg/A9w3mJWaCH',bg:'linear-gradient(135deg,#271742,#090909 68%)'},
-  {id:3,category:'membresias',tag:'INICIAL',icon:'⭐',name:'VIP ORO',type:'MEMBRESÍA MENSUAL',price:'$9.99',period:'/ MES',description:'La mejor forma de comenzar a disfrutar beneficios exclusivos dentro de la ciudad.',features:['Prioridad básica en cola','Tag VIP en Discord','Acceso a canal VIP','Beneficios semanales'],buyUrl:'https://discord.gg/A9w3mJWaCH',bg:'linear-gradient(135deg,#493a12,#090909 68%)'},
-  {id:4,category:'vehiculos',tag:'EDICIÓN LIMITADA',icon:'🏎️',name:'SUPERCAR VIP',type:'VEHÍCULO EXCLUSIVO',price:'$39.99',period:'PAGO ÚNICO',description:'Vehículo exclusivo con diseño deportivo y matrícula personalizada.',features:['Vehículo permanente','Matrícula personalizada','Entrega en garaje','Color inicial a elección'],buyUrl:'https://discord.gg/A9w3mJWaCH',bg:'linear-gradient(135deg,#391019,#090909 68%)'},
-  {id:5,category:'vehiculos',tag:'NUEVO',icon:'🏍️',name:'MOTO VIP',type:'VEHÍCULO EXCLUSIVO',price:'$24.99',period:'PAGO ÚNICO',description:'Motocicleta premium para recorrer Los Santos con una presencia única.',features:['Moto permanente','Entrega inmediata','Matrícula personalizada','Color inicial a elección'],buyUrl:'https://discord.gg/A9w3mJWaCH',bg:'linear-gradient(135deg,#102839,#090909 68%)'},
-  {id:6,category:'propiedades',tag:'EXCLUSIVO',icon:'🏡',name:'MANSIÓN VIP',type:'PROPIEDAD PREMIUM',price:'$79.99',period:'PAGO ÚNICO',description:'Propiedad exclusiva con garaje, almacenamiento y ubicación premium.',features:['Propiedad permanente','Garaje privado','Stash exclusivo','Ubicación premium'],buyUrl:'https://discord.gg/A9w3mJWaCH',bg:'linear-gradient(135deg,#173525,#090909 68%)'},
-  {id:7,category:'paquetes',tag:'MEJOR VALOR',icon:'💵',name:'PACK EMPRENDEDOR',type:'PAQUETE INICIAL',price:'$14.99',period:'PAGO ÚNICO',description:'Impulsa la historia de tu personaje con recursos para comenzar un nuevo proyecto.',features:['Dinero inicial','Vehículo básico','Teléfono premium','Entrega por ticket'],buyUrl:'https://discord.gg/A9w3mJWaCH',bg:'linear-gradient(135deg,#173626,#090909 68%)'},
-  {id:8,category:'paquetes',tag:'PERSONALIZADO',icon:'🪪',name:'CAMBIO DE NOMBRE',type:'SERVICIO VIP',price:'$7.99',period:'PAGO ÚNICO',description:'Solicita un cambio autorizado del nombre de tu personaje sin perder su progreso.',features:['Cambio de identidad','Conserva inventario','Conserva propiedades','Gestión por administración'],buyUrl:'https://discord.gg/A9w3mJWaCH',bg:'linear-gradient(135deg,#31203b,#090909 68%)'},
-  {id:9,category:'paquetes',tag:'NEGOCIO VIP',icon:'🏪',name:'NEGOCIO PERSONALIZADO',type:'PROYECTO EXCLUSIVO',price:'CONSULTAR',period:'POR TICKET',description:'Solicita la creación o adquisición de un negocio exclusivo dentro de la ciudad.',features:['Asesoría con el staff','Ubicación evaluada','Configuración personalizada','Entrega coordinada'],buyUrl:'https://discord.gg/A9w3mJWaCH',bg:'linear-gradient(135deg,#3d2411,#090909 68%)'}
+  {id:1,category:'membresias',tag:'MÁS POPULAR',icon:'👑',name:'VIP DIAMANTE',type:'MEMBRESÍA MENSUAL',price:'$29.99',period:'/ MES',description:'La experiencia premium definitiva con prioridad alta y beneficios exclusivos.',features:['Prioridad máxima en cola','Tag exclusivo en Discord','Vehículo VIP mensual','Bonificación de salario'],buyUrl:'https://discord.gg/RWz6vTtdrb',bg:'linear-gradient(135deg,#42131d,#090909 68%)'},
+  {id:2,category:'membresias',tag:'RECOMENDADO',icon:'💎',name:'VIP PLATINO',type:'MEMBRESÍA MENSUAL',price:'$19.99',period:'/ MES',description:'Ventajas premium para jugadores activos que buscan comodidad y distinción.',features:['Prioridad alta en cola','Tag VIP en Discord','Acceso a sorteos VIP','Bonificación de salario'],buyUrl:'https://discord.gg/RWz6vTtdrb',bg:'linear-gradient(135deg,#271742,#090909 68%)'},
+  {id:3,category:'membresias',tag:'INICIAL',icon:'⭐',name:'VIP ORO',type:'MEMBRESÍA MENSUAL',price:'$9.99',period:'/ MES',description:'La mejor forma de comenzar a disfrutar beneficios exclusivos dentro de la ciudad.',features:['Prioridad básica en cola','Tag VIP en Discord','Acceso a canal VIP','Beneficios semanales'],buyUrl:'https://discord.gg/RWz6vTtdrb',bg:'linear-gradient(135deg,#493a12,#090909 68%)'},
+  {id:4,category:'vehiculos',tag:'EDICIÓN LIMITADA',icon:'🏎️',name:'SUPERCAR VIP',type:'VEHÍCULO EXCLUSIVO',price:'$39.99',period:'PAGO ÚNICO',description:'Vehículo exclusivo con diseño deportivo y matrícula personalizada.',features:['Vehículo permanente','Matrícula personalizada','Entrega en garaje','Color inicial a elección'],buyUrl:'https://discord.gg/RWz6vTtdrb',bg:'linear-gradient(135deg,#391019,#090909 68%)'},
+  {id:5,category:'vehiculos',tag:'NUEVO',icon:'🏍️',name:'MOTO VIP',type:'VEHÍCULO EXCLUSIVO',price:'$24.99',period:'PAGO ÚNICO',description:'Motocicleta premium para recorrer Los Santos con una presencia única.',features:['Moto permanente','Entrega inmediata','Matrícula personalizada','Color inicial a elección'],buyUrl:'https://discord.gg/RWz6vTtdrb',bg:'linear-gradient(135deg,#102839,#090909 68%)'},
+  {id:6,category:'propiedades',tag:'EXCLUSIVO',icon:'🏡',name:'MANSIÓN VIP',type:'PROPIEDAD PREMIUM',price:'$79.99',period:'PAGO ÚNICO',description:'Propiedad exclusiva con garaje, almacenamiento y ubicación premium.',features:['Propiedad permanente','Garaje privado','Stash exclusivo','Ubicación premium'],buyUrl:'https://discord.gg/RWz6vTtdrb',bg:'linear-gradient(135deg,#173525,#090909 68%)'},
+  {id:7,category:'paquetes',tag:'MEJOR VALOR',icon:'💵',name:'PACK EMPRENDEDOR',type:'PAQUETE INICIAL',price:'$14.99',period:'PAGO ÚNICO',description:'Impulsa la historia de tu personaje con recursos para comenzar un nuevo proyecto.',features:['Dinero inicial','Vehículo básico','Teléfono premium','Entrega por ticket'],buyUrl:'https://discord.gg/RWz6vTtdrb',bg:'linear-gradient(135deg,#173626,#090909 68%)'},
+  {id:8,category:'paquetes',tag:'PERSONALIZADO',icon:'🪪',name:'CAMBIO DE NOMBRE',type:'SERVICIO VIP',price:'$7.99',period:'PAGO ÚNICO',description:'Solicita un cambio autorizado del nombre de tu personaje sin perder su progreso.',features:['Cambio de identidad','Conserva inventario','Conserva propiedades','Gestión por administración'],buyUrl:'https://discord.gg/RWz6vTtdrb',bg:'linear-gradient(135deg,#31203b,#090909 68%)'},
+  {id:9,category:'paquetes',tag:'NEGOCIO VIP',icon:'🏪',name:'NEGOCIO PERSONALIZADO',type:'PROYECTO EXCLUSIVO',price:'CONSULTAR',period:'POR TICKET',description:'Solicita la creación o adquisición de un negocio exclusivo dentro de la ciudad.',features:['Asesoría con el staff','Ubicación evaluada','Configuración personalizada','Entrega coordinada'],buyUrl:'https://discord.gg/RWz6vTtdrb',bg:'linear-gradient(135deg,#3d2411,#090909 68%)'}
 ];
 
 const grid=document.getElementById('productsGrid');
