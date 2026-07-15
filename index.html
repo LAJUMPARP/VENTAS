@@ -155,7 +155,187 @@ body.pageLoaded .hero .heroVisual{animation:loadVisual 1.25s cubic-bezier(.22,1,
     opacity:1!important;animation:none!important;transform:none!important;filter:none!important
   }
 }
+/* =========================================================
+   EFECTO DE APARICIÓN AL ABRIR / RECARGAR
+========================================================= */
 
+/* Estado inicial oculto */
+.nav,
+.eyebrow,
+.hero h1,
+.heroText,
+.heroActions,
+.heroStats .stat,
+.heroVisual{
+    opacity:0;
+}
+
+/* Navbar */
+.nav{
+    animation:navAppear .9s cubic-bezier(.22,1,.36,1) forwards;
+    animation-delay:.1s;
+}
+
+/* Indicador tienda disponible */
+.eyebrow{
+    animation:fadeUp .8s cubic-bezier(.22,1,.36,1) forwards;
+    animation-delay:.35s;
+}
+
+/* Título */
+.hero h1{
+    animation:titleAppear 1.15s cubic-bezier(.22,1,.36,1) forwards;
+    animation-delay:.55s;
+}
+
+/* Descripción */
+.heroText{
+    animation:fadeUp .9s cubic-bezier(.22,1,.36,1) forwards;
+    animation-delay:.9s;
+}
+
+/* Botones */
+.heroActions{
+    opacity:0;
+    animation:fadeUp .9s cubic-bezier(.22,1,.36,1) forwards;
+    animation-delay:1.1s;
+}
+
+/* Estadísticas una por una */
+.heroStats .stat:nth-child(1){
+    animation:fadeUp .75s cubic-bezier(.22,1,.36,1) forwards;
+    animation-delay:1.3s;
+}
+
+.heroStats .stat:nth-child(2){
+    animation:fadeUp .75s cubic-bezier(.22,1,.36,1) forwards;
+    animation-delay:1.45s;
+}
+
+.heroStats .stat:nth-child(3){
+    animation:fadeUp .75s cubic-bezier(.22,1,.36,1) forwards;
+    animation-delay:1.6s;
+}
+
+/* Video / cinematic */
+.heroVisual{
+    animation:videoAppear 1.4s cubic-bezier(.22,1,.36,1) forwards;
+    animation-delay:.75s;
+}
+
+/* Panel dentro del video */
+.visualPanel{
+    opacity:0;
+    animation:panelAppear .9s cubic-bezier(.22,1,.36,1) forwards;
+    animation-delay:1.55s;
+}
+
+/* =========================================================
+   ANIMACIONES
+========================================================= */
+
+@keyframes navAppear{
+    0%{
+        opacity:0;
+        transform:
+            translateX(-50%)
+            translateY(-45px)
+            scale(.94);
+        filter:blur(12px);
+    }
+
+    100%{
+        opacity:1;
+        transform:
+            translateX(-50%)
+            translateY(0)
+            scale(1);
+        filter:blur(0);
+    }
+}
+
+@keyframes fadeUp{
+    0%{
+        opacity:0;
+        transform:translateY(45px);
+        filter:blur(12px);
+    }
+
+    100%{
+        opacity:1;
+        transform:translateY(0);
+        filter:blur(0);
+    }
+}
+
+@keyframes titleAppear{
+    0%{
+        opacity:0;
+        transform:
+            translateY(70px)
+            scale(.93);
+        letter-spacing:-14px;
+        filter:blur(18px);
+    }
+
+    100%{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+        letter-spacing:-7px;
+        filter:blur(0);
+    }
+}
+
+@keyframes videoAppear{
+    0%{
+        opacity:0;
+        transform:
+            translateX(100px)
+            scale(.88);
+        filter:blur(22px);
+    }
+
+    100%{
+        opacity:1;
+        transform:
+            translateX(0)
+            scale(1);
+        filter:blur(0);
+    }
+}
+
+@keyframes panelAppear{
+    0%{
+        opacity:0;
+        transform:translateY(35px) scale(.96);
+        filter:blur(10px);
+    }
+
+    100%{
+        opacity:1;
+        transform:translateY(0) scale(1);
+        filter:blur(0);
+    }
+}
+
+/* Evita animaciones fuertes a usuarios que las desactivan */
+@media(prefers-reduced-motion:reduce){
+    .nav,
+    .eyebrow,
+    .hero h1,
+    .heroText,
+    .heroActions,
+    .heroStats .stat,
+    .heroVisual,
+    .visualPanel{
+        opacity:1;
+        animation:none;
+        transform:none;
+        filter:none;
+    }
+}
 </style>
 </head>
 <body>
