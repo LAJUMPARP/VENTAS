@@ -971,12 +971,10 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        scroll-behavior: auto !important;
-        animation-duration: .01ms !important;
-        animation-delay: 0ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
+      html { scroll-behavior: auto; }
+      .loading-screen::before,
+      .loading-screen::after {
+        animation: none !important;
       }
     }
   </style>
@@ -1338,15 +1336,25 @@
       updateLoadingProgress(100);
       elements.loadingScreen.classList.add("is-complete");
 
+      // Mantiene el 100% visible un momento antes de cerrar la carga.
       setTimeout(() => {
         elements.loadingScreen.classList.add("is-hiding");
         document.body.classList.remove("loading-page");
-        document.body.classList.add("pageLoaded");
 
+        // Primero desaparece completamente el loader.
+        // Después se inicia la aparición cinematográfica de la página.
         setTimeout(() => {
           elements.loadingScreen.hidden = true;
-        }, 900);
-      }, 520);
+          document.body.classList.remove("pageLoaded");
+
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              document.body.classList.add("pageLoaded");
+              observeRevealElements(document);
+            });
+          });
+        }, 950);
+      }, 850);
     }
 
     function startLoadingScreen() {
@@ -1367,14 +1375,19 @@
         elements.loadingLogoFrame.classList.add("logo-error");
       }
 
-      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const duration = reducedMotion ? 450 : 2850;
+      // Duración real de la barra: 6 segundos.
+      const duration = 6000;
       const startTime = performance.now();
 
       function animateProgress(now) {
         const elapsed = now - startTime;
         const linear = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - linear, 3);
+
+        // Progreso suave y constante, sin llegar demasiado rápido al 100%.
+        const eased = linear < 0.82
+          ? linear * 0.92
+          : 0.7544 + ((linear - 0.82) / 0.18) * 0.2456;
+
         updateLoadingProgress(eased * 100);
 
         if (linear < 1) {
@@ -1390,16 +1403,11 @@
     let revealObserver = null;
 
     function observeRevealElements(root = document) {
+      // No activa animaciones detrás de la pantalla de carga.
+      if (document.body.classList.contains("loading-page")) return;
+
       const revealElements = [...root.querySelectorAll(".reveal:not([data-reveal-bound])")];
       if (!revealElements.length) return;
-
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        revealElements.forEach(element => {
-          element.classList.add("show");
-          element.dataset.revealBound = "true";
-        });
-        return;
-      }
 
       if (!revealObserver) {
         revealObserver = new IntersectionObserver(entries => {
