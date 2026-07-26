@@ -196,6 +196,70 @@
       100% { box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0); }
     }
 
+    /* =========================================================
+       EFECTOS DE APARICIÓN
+       Se reproducen al cargar y al actualizar los productos.
+    ========================================================== */
+    @keyframes topbarAppear {
+      from { opacity: 0; transform: translateY(-18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes contentAppear {
+      from { opacity: 0; transform: translateY(28px); filter: blur(7px); }
+      to { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+
+    @keyframes heroCardAppear {
+      from { opacity: 0; transform: translateX(35px) scale(.96); filter: blur(8px); }
+      to { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+    }
+
+    @keyframes productAppear {
+      0% { opacity: 0; transform: translateY(26px) scale(.97); filter: blur(5px); }
+      65% { opacity: 1; transform: translateY(-3px) scale(1.005); filter: blur(0); }
+      100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    }
+
+    @keyframes iconPop {
+      from { opacity: 0; transform: rotate(-10deg) scale(.55); }
+      70% { opacity: 1; transform: rotate(1deg) scale(1.1); }
+      to { opacity: 1; transform: rotate(-4deg) scale(1); }
+    }
+
+    .topbar {
+      animation: topbarAppear .65s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .hero-grid > div:first-child {
+      animation: contentAppear .8s .08s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .hero-card {
+      animation: heroCardAppear .85s .2s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .toolbar,
+    .sale-banner,
+    .section-head {
+      animation: contentAppear .65s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .toolbar { animation-delay: .30s; }
+    .sale-banner { animation-delay: .38s; }
+    .section-head { animation-delay: .46s; }
+
+    .product-card.is-appearing {
+      animation: productAppear .58s cubic-bezier(.2,.8,.2,1) both;
+      animation-delay: var(--appear-delay, 0ms);
+    }
+
+    .product-card.is-appearing .product-icon,
+    .product-card.is-appearing .product-photo {
+      animation: iconPop .68s cubic-bezier(.2,.8,.2,1) both;
+      animation-delay: calc(var(--appear-delay, 0ms) + 110ms);
+    }
+
     h1 {
       margin: 0;
       max-width: 820px;
@@ -558,6 +622,16 @@
       .modal-actions { align-items: stretch; flex-direction: column; }
       .modal-actions .primary-button { width: 100%; }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-delay: 0ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -905,8 +979,8 @@
         return;
       }
 
-      elements.productsGrid.innerHTML = products.map(product => `
-        <article class="product-card">
+      elements.productsGrid.innerHTML = products.map((product, index) => `
+        <article class="product-card is-appearing" style="--appear-delay: ${Math.min(index * 65, 520)}ms">
           <div class="product-image">
             ${product.badge ? `<span class="badge">${escapeHtml(product.badge)}</span>` : ""}
             <span class="product-icon">${escapeHtml(product.icon)}</span>
@@ -928,6 +1002,16 @@
           </div>
         </article>
       `).join("");
+
+      // Al terminar, quitamos la clase para conservar el hover normal.
+      $$(".product-card.is-appearing").forEach(card => {
+        card.addEventListener("animationend", event => {
+          if (event.animationName === "productAppear") {
+            card.classList.remove("is-appearing");
+            card.style.removeProperty("--appear-delay");
+          }
+        }, { once: true });
+      });
     }
 
     function renderCart() {
