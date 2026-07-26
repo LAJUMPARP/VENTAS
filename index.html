@@ -717,6 +717,259 @@
       .modal-actions .primary-button { width: 100%; }
     }
 
+
+    /* =========================================================
+       PANTALLA DE CARGA — LA JUMPA RP
+    ========================================================== */
+    body.loading-page {
+      overflow: hidden;
+    }
+
+    .loading-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(var(--primary-rgb), .16), transparent 28%),
+        radial-gradient(circle at 12% 8%, rgba(var(--primary-rgb), .08), transparent 24%),
+        linear-gradient(145deg, #020202 0%, #080405 48%, #020202 100%);
+      opacity: 1;
+      visibility: visible;
+      transition: opacity .85s cubic-bezier(.22,1,.36,1), visibility .85s;
+    }
+
+    .loading-screen::before {
+      content: "";
+      position: absolute;
+      inset: -35%;
+      background:
+        repeating-linear-gradient(90deg, transparent 0 84px, rgba(255,255,255,.022) 85px 86px),
+        repeating-linear-gradient(0deg, transparent 0 84px, rgba(255,255,255,.018) 85px 86px);
+      transform: perspective(650px) rotateX(58deg) translateY(22%);
+      animation: loaderGrid 8s linear infinite;
+      pointer-events: none;
+    }
+
+    .loading-screen::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 32%, rgba(255,255,255,.028) 48%, transparent 64%);
+      transform: translateX(-120%);
+      animation: loaderSweep 2.8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .loading-screen.is-hiding {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loading-content {
+      position: relative;
+      z-index: 2;
+      width: min(520px, 92vw);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .loading-logo-frame {
+      position: relative;
+      width: clamp(150px, 28vw, 245px);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      margin-bottom: 24px;
+      border: 1px solid rgba(var(--primary-rgb), .20);
+      border-radius: 38px;
+      background: rgba(10,10,10,.52);
+      box-shadow:
+        0 28px 90px rgba(0,0,0,.65),
+        0 0 70px rgba(var(--primary-rgb), .12),
+        inset 0 0 45px rgba(var(--primary-rgb), .04);
+      backdrop-filter: blur(20px);
+      opacity: 0;
+      transform: translateY(32px) scale(.82);
+      filter: blur(15px);
+      animation: loaderLogoReveal 1.1s cubic-bezier(.22,1,.36,1) .22s forwards;
+    }
+
+    .loading-logo-frame::before,
+    .loading-logo-frame::after {
+      content: "";
+      position: absolute;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .loading-logo-frame::before {
+      inset: -8px;
+      border: 1px solid rgba(var(--primary-rgb), .09);
+    }
+
+    .loading-logo-frame::after {
+      inset: 14px;
+      border: 1px dashed rgba(var(--primary-rgb), .15);
+    }
+
+    .loading-logo {
+      position: relative;
+      z-index: 2;
+      width: 78%;
+      height: 78%;
+      object-fit: contain;
+      filter: drop-shadow(0 14px 24px rgba(0,0,0,.55));
+    }
+
+    .loading-logo-fallback {
+      position: relative;
+      z-index: 2;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-weight: 1000;
+      line-height: .88;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+    }
+
+    .loading-logo-fallback strong {
+      font-size: clamp(27px, 6vw, 45px);
+      color: var(--primary);
+      text-shadow: 0 0 28px rgba(var(--primary-rgb), .28);
+    }
+
+    .loading-logo-fallback span {
+      font-size: clamp(14px, 3vw, 22px);
+      letter-spacing: 5px;
+      color: rgba(255,255,255,.92);
+    }
+
+    .loading-logo-frame.logo-error .loading-logo {
+      display: none;
+    }
+
+    .loading-logo-frame.logo-error .loading-logo-fallback {
+      display: flex;
+    }
+
+    .loading-kicker {
+      margin-bottom: 8px;
+      color: var(--primary);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: loaderTextReveal .75s ease .65s forwards;
+    }
+
+    .loading-title {
+      margin: 0 0 28px;
+      font-size: clamp(20px, 4vw, 31px);
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: loaderTextReveal .75s ease .8s forwards;
+    }
+
+    .loading-progress-wrap {
+      width: 100%;
+      opacity: 0;
+      transform: translateY(14px);
+      animation: loaderTextReveal .75s ease 1s forwards;
+    }
+
+    .loading-progress-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 10px;
+      color: rgba(255,255,255,.58);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .loading-percentage {
+      min-width: 42px;
+      color: rgba(255,255,255,.92);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .loading-progress-track {
+      position: relative;
+      height: 7px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 999px;
+      background: rgba(255,255,255,.045);
+      box-shadow: inset 0 1px 6px rgba(0,0,0,.55);
+    }
+
+    .loading-progress-bar {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary), var(--primary-2), #ffd2d6);
+      box-shadow: 0 0 22px rgba(var(--primary-rgb), .42);
+      transition: width .12s linear;
+    }
+
+    .loading-progress-bar::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 45px;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.85));
+      filter: blur(2px);
+    }
+
+    .loading-screen.is-complete .loading-logo-frame {
+      animation: loaderLogoComplete .72s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    .loading-screen.is-complete .loading-progress-bar {
+      box-shadow: 0 0 42px rgba(var(--primary-rgb), .7);
+    }
+
+    @keyframes loaderLogoReveal {
+      to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    }
+
+    @keyframes loaderLogoComplete {
+      45% { transform: scale(1.055); filter: brightness(1.22); }
+      100% { transform: scale(1); filter: brightness(1); }
+    }
+
+    @keyframes loaderTextReveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes loaderGrid {
+      to { transform: perspective(650px) rotateX(58deg) translateY(31%); }
+    }
+
+    @keyframes loaderSweep {
+      0%, 20% { transform: translateX(-120%); }
+      70%, 100% { transform: translateX(120%); }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         scroll-behavior: auto !important;
@@ -728,7 +981,32 @@
     }
   </style>
 </head>
-<body>
+<body class="loading-page">
+  <div class="loading-screen" id="loadingScreen" role="status" aria-live="polite" aria-label="Cargando LA JUMPA RP">
+    <div class="loading-content">
+      <div class="loading-logo-frame" id="loadingLogoFrame">
+        <img class="loading-logo" id="loadingLogo" src="./assets/logo.png" alt="Logo de LA JUMPA RP">
+        <div class="loading-logo-fallback" aria-hidden="true">
+          <strong>LA JUMPA</strong>
+          <span>RP</span>
+        </div>
+      </div>
+
+      <div class="loading-kicker">Bienvenido a nuestra tienda</div>
+      <div class="loading-title">LA JUMPA RP</div>
+
+      <div class="loading-progress-wrap">
+        <div class="loading-progress-meta">
+          <span id="loadingStatus">Preparando la experiencia</span>
+          <span class="loading-percentage" id="loadingPercentage">0%</span>
+        </div>
+        <div class="loading-progress-track" id="loadingProgressTrack" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="loading-progress-bar" id="loadingProgressBar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <header class="topbar">
     <div class="container nav">
       <a class="brand" href="#inicio" aria-label="Ir al inicio">
@@ -1028,19 +1306,86 @@
       modalDescription: $("#modalDescription"),
       modalPrice: $("#modalPrice"),
       modalAddButton: $("#modalAddButton"),
-      toast: $("#toast")
+      toast: $("#toast"),
+      loadingScreen: $("#loadingScreen"),
+      loadingLogo: $("#loadingLogo"),
+      loadingLogoFrame: $("#loadingLogoFrame"),
+      loadingProgressBar: $("#loadingProgressBar"),
+      loadingProgressTrack: $("#loadingProgressTrack"),
+      loadingPercentage: $("#loadingPercentage"),
+      loadingStatus: $("#loadingStatus")
     };
 
-    // Activa la entrada cinematográfica inicial.
-    window.addEventListener("DOMContentLoaded", () => {
-      document.body.classList.remove("pageLoaded");
+    const loadingMessages = [
+      { at: 0, text: "Preparando la experiencia" },
+      { at: 24, text: "Cargando recursos" },
+      { at: 52, text: "Configurando la tienda" },
+      { at: 78, text: "Casi listo" },
+      { at: 100, text: "Bienvenido a LA JUMPA RP" }
+    ];
 
-      requestAnimationFrame(() => {
+    function updateLoadingProgress(value) {
+      const progress = Math.max(0, Math.min(100, Math.round(value)));
+      elements.loadingProgressBar.style.width = `${progress}%`;
+      elements.loadingPercentage.textContent = `${progress}%`;
+      elements.loadingProgressTrack.setAttribute("aria-valuenow", String(progress));
+
+      const message = [...loadingMessages].reverse().find(item => progress >= item.at);
+      if (message) elements.loadingStatus.textContent = message.text;
+    }
+
+    function finishLoadingScreen() {
+      updateLoadingProgress(100);
+      elements.loadingScreen.classList.add("is-complete");
+
+      setTimeout(() => {
+        elements.loadingScreen.classList.add("is-hiding");
+        document.body.classList.remove("loading-page");
+        document.body.classList.add("pageLoaded");
+
         setTimeout(() => {
-          document.body.classList.add("pageLoaded");
-        }, 120);
-      });
-    });
+          elements.loadingScreen.hidden = true;
+        }, 900);
+      }, 520);
+    }
+
+    function startLoadingScreen() {
+      document.body.classList.remove("pageLoaded");
+      document.body.classList.add("loading-page");
+
+      if (!elements.loadingScreen) {
+        document.body.classList.remove("loading-page");
+        document.body.classList.add("pageLoaded");
+        return;
+      }
+
+      elements.loadingLogo.addEventListener("error", () => {
+        elements.loadingLogoFrame.classList.add("logo-error");
+      }, { once: true });
+
+      if (elements.loadingLogo.complete && elements.loadingLogo.naturalWidth === 0) {
+        elements.loadingLogoFrame.classList.add("logo-error");
+      }
+
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const duration = reducedMotion ? 450 : 2850;
+      const startTime = performance.now();
+
+      function animateProgress(now) {
+        const elapsed = now - startTime;
+        const linear = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - linear, 3);
+        updateLoadingProgress(eased * 100);
+
+        if (linear < 1) {
+          requestAnimationFrame(animateProgress);
+        } else {
+          finishLoadingScreen();
+        }
+      }
+
+      requestAnimationFrame(animateProgress);
+    }
 
     let revealObserver = null;
 
@@ -1307,8 +1652,10 @@
 
     initialize();
 
-    if (document.readyState !== "loading") {
-      requestAnimationFrame(() => document.body.classList.add("pageLoaded"));
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", startLoadingScreen, { once: true });
+    } else {
+      startLoadingScreen();
     }
   </script>
 </body>
