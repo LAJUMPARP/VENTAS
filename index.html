@@ -197,67 +197,161 @@
     }
 
     /* =========================================================
-       EFECTOS DE APARICIÓN
-       Se reproducen al cargar y al actualizar los productos.
+       LA JUMPA STORE — CARGA CINEMÁTICA + REVEAL AL SCROLL
+       Adaptado desde el archivo de referencia proporcionado.
     ========================================================== */
-    @keyframes topbarAppear {
-      from { opacity: 0; transform: translateY(-18px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    /* Estado inicial antes de activar pageLoaded */
+    body:not(.pageLoaded) .topbar,
+    body:not(.pageLoaded) .eyebrow,
+    body:not(.pageLoaded) h1,
+    body:not(.pageLoaded) .hero-copy,
+    body:not(.pageLoaded) .hero-actions,
+    body:not(.pageLoaded) .hero-stat .stat,
+    body:not(.pageLoaded) .hero-card,
+    body:not(.pageLoaded) .hero-card-inner {
+      opacity: 0;
     }
 
-    @keyframes contentAppear {
-      from { opacity: 0; transform: translateY(28px); filter: blur(7px); }
-      to { opacity: 1; transform: translateY(0); filter: blur(0); }
+    body.pageLoaded .topbar {
+      animation: vipNavReveal 1s cubic-bezier(.22,1,.36,1) .10s both;
     }
 
-    @keyframes heroCardAppear {
-      from { opacity: 0; transform: translateX(35px) scale(.96); filter: blur(8px); }
-      to { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+    body.pageLoaded .eyebrow {
+      animation: vipRevealUp .85s cubic-bezier(.22,1,.36,1) .35s both;
     }
 
-    @keyframes productAppear {
-      0% { opacity: 0; transform: translateY(26px) scale(.97); filter: blur(5px); }
-      65% { opacity: 1; transform: translateY(-3px) scale(1.005); filter: blur(0); }
-      100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    body.pageLoaded h1 {
+      animation: vipTitleReveal 1.25s cubic-bezier(.22,1,.36,1) .58s both;
     }
 
-    @keyframes iconPop {
-      from { opacity: 0; transform: rotate(-10deg) scale(.55); }
-      70% { opacity: 1; transform: rotate(1deg) scale(1.1); }
-      to { opacity: 1; transform: rotate(-4deg) scale(1); }
+    body.pageLoaded .hero-copy {
+      animation: vipRevealUp .9s cubic-bezier(.22,1,.36,1) .90s both;
     }
 
-    .topbar {
-      animation: topbarAppear .65s cubic-bezier(.2,.8,.2,1) both;
+    body.pageLoaded .hero-actions {
+      animation: vipRevealUp .9s cubic-bezier(.22,1,.36,1) 1.10s both;
     }
 
-    .hero-grid > div:first-child {
-      animation: contentAppear .8s .08s cubic-bezier(.2,.8,.2,1) both;
+    body.pageLoaded .hero-stat .stat:nth-child(1) {
+      animation: vipRevealUp .75s cubic-bezier(.22,1,.36,1) 1.28s both;
     }
 
-    .hero-card {
-      animation: heroCardAppear .85s .2s cubic-bezier(.2,.8,.2,1) both;
+    body.pageLoaded .hero-stat .stat:nth-child(2) {
+      animation: vipRevealUp .75s cubic-bezier(.22,1,.36,1) 1.43s both;
     }
 
-    .toolbar,
-    .sale-banner,
-    .section-head {
-      animation: contentAppear .65s cubic-bezier(.2,.8,.2,1) both;
+    body.pageLoaded .hero-stat .stat:nth-child(3) {
+      animation: vipRevealUp .75s cubic-bezier(.22,1,.36,1) 1.58s both;
     }
 
-    .toolbar { animation-delay: .30s; }
-    .sale-banner { animation-delay: .38s; }
-    .section-head { animation-delay: .46s; }
-
-    .product-card.is-appearing {
-      animation: productAppear .58s cubic-bezier(.2,.8,.2,1) both;
-      animation-delay: var(--appear-delay, 0ms);
+    body.pageLoaded .hero-card {
+      animation: vipCinematicReveal 1.55s cubic-bezier(.22,1,.36,1) .70s both;
     }
 
-    .product-card.is-appearing .product-icon,
-    .product-card.is-appearing .product-photo {
-      animation: iconPop .68s cubic-bezier(.2,.8,.2,1) both;
-      animation-delay: calc(var(--appear-delay, 0ms) + 110ms);
+    body.pageLoaded .hero-card-inner {
+      animation: vipPanelReveal .85s cubic-bezier(.22,1,.36,1) 1.55s both;
+    }
+
+    @keyframes vipNavReveal {
+      from {
+        opacity: 0;
+        transform: translateY(-45px) scale(.97);
+        filter: blur(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes vipRevealUp {
+      from {
+        opacity: 0;
+        transform: translateY(55px) scale(.97);
+        filter: blur(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes vipTitleReveal {
+      from {
+        opacity: 0;
+        transform: translateY(80px) scale(.92);
+        letter-spacing: -15px;
+        filter: blur(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        letter-spacing: -4px;
+        filter: blur(0);
+      }
+    }
+
+    @keyframes vipCinematicReveal {
+      from {
+        opacity: 0;
+        transform: translateX(130px) scale(.84) rotate(2deg);
+        filter: blur(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0) scale(1) rotate(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes vipPanelReveal {
+      from {
+        opacity: 0;
+        transform: translateY(35px) scale(.96);
+        filter: blur(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    /* Aparición al bajar por la página */
+    .reveal {
+      opacity: 0;
+      transform: translateY(45px) scale(.98);
+      filter: blur(8px);
+      transition:
+        opacity .8s cubic-bezier(.22,1,.36,1),
+        transform .8s cubic-bezier(.22,1,.36,1),
+        filter .8s cubic-bezier(.22,1,.36,1);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+
+    .product-card.reveal .product-icon,
+    .product-card.reveal .product-photo {
+      opacity: 0;
+      transform: rotate(-10deg) scale(.7);
+      transition:
+        opacity .65s cubic-bezier(.22,1,.36,1),
+        transform .65s cubic-bezier(.22,1,.36,1);
+      transition-delay: calc(var(--reveal-delay, 0ms) + 120ms);
+    }
+
+    .product-card.reveal.show .product-icon,
+    .product-card.reveal.show .product-photo {
+      opacity: 1;
+      transform: rotate(-4deg) scale(1);
     }
 
     h1 {
@@ -682,7 +776,7 @@
 
     <section class="toolbar-wrap" id="productos">
       <div class="container">
-        <div class="toolbar">
+        <div class="toolbar reveal">
           <div class="categories" id="categories"></div>
           <label class="search-box">
             <span aria-hidden="true">⌕</span>
@@ -690,9 +784,9 @@
           </label>
         </div>
 
-        <div class="sale-banner">🔥 Ofertas activas · Entrega mediante enlace externo seguro 🔥</div>
+        <div class="sale-banner reveal" style="--reveal-delay:90ms">🔥 Ofertas activas · Entrega mediante enlace externo seguro 🔥</div>
 
-        <div class="section-head">
+        <div class="section-head reveal" style="--reveal-delay:160ms">
           <div>
             <h2>Productos destacados</h2>
             <p>Selecciona una categoría o utiliza el buscador.</p>
@@ -706,7 +800,7 @@
   </main>
 
   <footer class="footer">
-    <div class="container footer-inner">
+    <div class="container footer-inner reveal">
       <div>© <span id="year"></span> <span data-store-name>LA JUMPA</span> STORE. Todos los derechos reservados.</div>
       <div>GitHub Pages · Sitio estático · Pagos mediante proveedor externo</div>
     </div>
@@ -937,6 +1031,50 @@
       toast: $("#toast")
     };
 
+    // Activa la entrada cinematográfica inicial.
+    window.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.remove("pageLoaded");
+
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          document.body.classList.add("pageLoaded");
+        }, 120);
+      });
+    });
+
+    let revealObserver = null;
+
+    function observeRevealElements(root = document) {
+      const revealElements = [...root.querySelectorAll(".reveal:not([data-reveal-bound])")];
+      if (!revealElements.length) return;
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        revealElements.forEach(element => {
+          element.classList.add("show");
+          element.dataset.revealBound = "true";
+        });
+        return;
+      }
+
+      if (!revealObserver) {
+        revealObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("show");
+            revealObserver.unobserve(entry.target);
+          });
+        }, {
+          threshold: 0.10,
+          rootMargin: "0px 0px -35px 0px"
+        });
+      }
+
+      revealElements.forEach(element => {
+        element.dataset.revealBound = "true";
+        revealObserver.observe(element);
+      });
+    }
+
     function initialize() {
       document.title = `${CONFIG.storeName} Store`;
       $$('[data-store-name]').forEach(el => el.textContent = CONFIG.storeName);
@@ -950,6 +1088,7 @@
       renderProducts();
       renderCart();
       bindEvents();
+      observeRevealElements();
     }
 
     function renderCategories() {
@@ -980,7 +1119,7 @@
       }
 
       elements.productsGrid.innerHTML = products.map((product, index) => `
-        <article class="product-card is-appearing" style="--appear-delay: ${Math.min(index * 65, 520)}ms">
+        <article class="product-card reveal" style="--reveal-delay: ${Math.min(index * 70, 560)}ms">
           <div class="product-image">
             ${product.badge ? `<span class="badge">${escapeHtml(product.badge)}</span>` : ""}
             <span class="product-icon">${escapeHtml(product.icon)}</span>
@@ -1003,15 +1142,7 @@
         </article>
       `).join("");
 
-      // Al terminar, quitamos la clase para conservar el hover normal.
-      $$(".product-card.is-appearing").forEach(card => {
-        card.addEventListener("animationend", event => {
-          if (event.animationName === "productAppear") {
-            card.classList.remove("is-appearing");
-            card.style.removeProperty("--appear-delay");
-          }
-        }, { once: true });
-      });
+      observeRevealElements(elements.productsGrid);
     }
 
     function renderCart() {
@@ -1175,6 +1306,10 @@
     }
 
     initialize();
+
+    if (document.readyState !== "loading") {
+      requestAnimationFrame(() => document.body.classList.add("pageLoaded"));
+    }
   </script>
 </body>
 </html>
