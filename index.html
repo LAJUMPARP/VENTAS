@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="Pinopio - Flores, cajitas, gomitas, peluches y detalles para regalar.">
   <meta name="theme-color" content="#21958c">
   <title>Pinopio | Flores, cajitas, gomitas y más</title>
@@ -935,6 +935,350 @@
       .modal-actions { align-items: stretch; flex-direction: column; }
       .modal-actions .button { width: 100%; }
     }
+    /* ===== ADAPTACIÓN AUTOMÁTICA PARA MÓVILES ===== */
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body, main, section, .container, .products-grid, .product-card {
+      min-width: 0;
+    }
+
+    .product-name,
+    .product-description,
+    .modal-title,
+    .modal-description {
+      overflow-wrap: anywhere;
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      .button,
+      .category-button,
+      .mini-button,
+      .modal-close {
+        min-height: 46px;
+      }
+
+      .product-card:hover,
+      .button:hover,
+      .whatsapp-float:hover {
+        transform: none;
+      }
+    }
+
+    @media (max-width: 680px) {
+      body {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+      }
+
+      .container {
+        width: calc(100% - 20px);
+      }
+
+      .topbar {
+        background: rgba(255, 253, 247, .96);
+      }
+
+      .nav {
+        min-height: 64px;
+        gap: 8px;
+      }
+
+      .brand {
+        min-width: 0;
+        gap: 8px;
+      }
+
+      .brand-logo {
+        width: 42px;
+        height: 42px;
+        flex: 0 0 42px;
+      }
+
+      .brand-name {
+        max-width: 145px;
+        overflow: hidden;
+        font-size: 20px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .brand-name small {
+        font-size: 7px;
+        letter-spacing: 1px;
+      }
+
+      .nav .button {
+        min-width: 46px;
+        padding: 0 13px;
+        flex: 0 0 auto;
+      }
+
+      .nav .button span {
+        display: none;
+      }
+
+      .hero {
+        padding: 38px 0 30px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .eyebrow {
+        margin-bottom: 14px;
+        font-size: 8px;
+      }
+
+      h1 {
+        font-size: clamp(42px, 13vw, 57px);
+        line-height: .98;
+        letter-spacing: -2px;
+      }
+
+      .hero-copy {
+        margin-top: 18px;
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 9px;
+        margin-top: 22px;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+        min-height: 48px;
+      }
+
+      .hero-highlights {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .hero-card {
+        min-height: 300px;
+        border-radius: 28px;
+      }
+
+      .hero-card-inner {
+        inset: 14px;
+        border-radius: 22px;
+      }
+
+      .hero-logo {
+        width: min(220px, 70%);
+        border-width: 6px;
+      }
+
+      .hero-card-label {
+        max-width: 250px;
+        font-size: 8px;
+        line-height: 1.5;
+      }
+
+      .section {
+        padding: 25px 0 58px;
+      }
+
+      .catalog-toolbar {
+        position: static;
+        padding: 10px;
+        gap: 9px;
+        border-radius: 17px;
+      }
+
+      .categories {
+        width: 100%;
+        padding-bottom: 2px;
+      }
+
+      .category-button {
+        min-height: 42px;
+        padding: 0 14px;
+      }
+
+      .search-box {
+        width: 100%;
+        min-width: 0;
+        margin-left: 0;
+        border-radius: 14px;
+      }
+
+      .search-box input {
+        height: 46px;
+        font-size: 16px;
+      }
+
+      .section-head {
+        margin: 28px 0 17px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .section-head h2 {
+        font-size: 35px;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .product-card {
+        border-radius: 20px;
+      }
+
+      .product-image-wrap {
+        aspect-ratio: 4 / 3;
+      }
+
+      .product-body {
+        padding: 15px;
+      }
+
+      .product-name {
+        min-height: 0;
+        font-size: 22px;
+      }
+
+      .product-description {
+        height: auto;
+        max-height: none;
+        font-size: 11px;
+      }
+
+      .product-footer {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .product-price {
+        font-size: 13px;
+      }
+
+      .mini-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+      }
+
+      .mini-button {
+        min-height: 46px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+        font-size: 9px;
+      }
+
+      .about {
+        padding-bottom: 55px;
+      }
+
+      .about-card {
+        padding: 27px 21px;
+        grid-template-columns: 1fr;
+        border-radius: 25px;
+      }
+
+      .about-card .button {
+        width: 100%;
+      }
+
+      .footer-inner {
+        min-height: auto;
+        padding: 25px 0 88px;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .whatsapp-float {
+        right: max(12px, env(safe-area-inset-right));
+        bottom: max(12px, env(safe-area-inset-bottom));
+        width: 58px;
+        min-width: 58px;
+        height: 58px;
+        padding: 0;
+      }
+
+      .whatsapp-float span {
+        display: none;
+      }
+
+      .modal {
+        width: calc(100% - 16px);
+        max-height: calc(100dvh - 16px);
+        border-radius: 22px;
+      }
+
+      .modal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-image-wrap {
+        min-height: 220px;
+        max-height: 34dvh;
+      }
+
+      .modal-body {
+        padding: 24px 19px;
+      }
+
+      .modal-title {
+        font-size: 31px;
+      }
+
+      .modal-description {
+        font-size: 12px;
+      }
+
+      .modal-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .modal-actions .button {
+        width: 100%;
+        min-height: 48px;
+      }
+
+      .toast {
+        width: calc(100% - 28px);
+        bottom: max(18px, env(safe-area-inset-bottom));
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 370px) {
+      .brand-name {
+        max-width: 116px;
+        font-size: 18px;
+      }
+
+      h1 {
+        font-size: 40px;
+      }
+
+      .section-head h2 {
+        font-size: 31px;
+      }
+
+      .mini-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+
   </style>
 </head>
 
@@ -1663,9 +2007,61 @@
       return `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
     }
 
+    function getGreeting() {
+      const hour = new Date().getHours();
+
+      if (hour < 12) return "Buenos días";
+      if (hour < 19) return "Buenas tardes";
+      return "Buenas noches";
+    }
+
+    function buildGeneralMessage() {
+      return `${getGreeting()}, Pinopio 💗
+
+Quisiera recibir información sobre sus flores, cajitas, gomitas, peluches y detalles personalizados.
+
+Me gustaría conocer:
+• Catálogo disponible.
+• Precios.
+• Opciones de personalización.
+• Métodos de pago.
+• Zonas y fechas de entrega.
+
+Mi nombre es: `;
+    }
+
+    function buildProductMessage(product) {
+      return `${getGreeting()}, Pinopio 💗
+
+Quiero realizar el siguiente pedido:
+
+🌷 Producto: ${product.name}
+📂 Categoría: ${product.category}
+📝 Descripción: ${product.description}
+🔢 Cantidad inicial: 1
+
+Quisiera confirmar:
+• Precio final del pedido.
+• Disponibilidad del producto.
+• Colores, flores o diseños disponibles.
+• Fecha aproximada de preparación y entrega.
+• Costo de envío o modalidad de retiro.
+• Métodos de pago disponibles.
+
+Datos para completar:
+• Nombre del cliente:
+• Cantidad:
+• Fecha para recibirlo:
+• Zona o dirección de entrega:
+• Dedicatoria para la tarjeta:
+• Algún color o detalle especial:
+
+Muchas gracias 💗`;
+    }
+
     function setGeneralWhatsAppLinks() {
       $$(".whatsapp-general").forEach(link => {
-        link.href = buildWhatsAppUrl(CONFIG.generalMessage);
+        link.href = buildWhatsAppUrl(buildGeneralMessage());
       });
     }
 
@@ -1728,7 +2124,7 @@
               <span class="product-price">${product.price || "Consultar"}</span>
               <div class="mini-actions">
                 <button class="mini-button" data-detail="${product.id}">Ver detalle</button>
-                <a class="mini-button" href="${buildWhatsAppUrl(`Hola Pinopio 💗, quiero consultar por: ${product.name}.`)}" target="_blank" rel="noopener">Pedir</a>
+                <a class="mini-button" href="${buildWhatsAppUrl(buildProductMessage(product))}" target="_blank" rel="noopener">Pedir</a>
               </div>
             </div>
           </div>
@@ -1767,7 +2163,7 @@
       elements.modalCategory.textContent = product.category;
       elements.modalTitle.textContent = product.name;
       elements.modalDescription.textContent = product.description;
-      elements.modalOrder.href = buildWhatsAppUrl(`Hola Pinopio 💗, quiero pedir o consultar por: ${product.name}.`);
+      elements.modalOrder.href = buildWhatsAppUrl(buildProductMessage(product));
 
       elements.modalImage.style.display = "block";
       elements.modalPlaceholder.classList.remove("show");
